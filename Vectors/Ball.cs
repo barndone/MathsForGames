@@ -10,7 +10,6 @@ namespace Vectors
     public class Ball : GameObject
     {
         private Vector3 velocity;
-        private float radius;
         private float speed;
 
         public Ball(Vector3 velocity, float radius, float speed, int screenWidth, int screenHeight)
@@ -27,7 +26,7 @@ namespace Vectors
 
         public override void Update()
         {
-            position += (velocity * speed)* Raylib_cs.Raylib.GetFrameTime();
+            position += (velocity * speed) * Raylib_cs.Raylib.GetFrameTime();
             //bounces
             //check position +/-r
             //if position +/- r exceeds the boundaries of the window, update velocity

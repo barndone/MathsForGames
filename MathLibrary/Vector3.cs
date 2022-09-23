@@ -51,6 +51,18 @@ namespace MathLibrary
             return new Vector3(rhs.x * x, rhs.y * y, rhs.z * z);
         }
 
+        //returns the dot product of 2 Vector3s
+        public float Dot(Vector3 rhs)
+        {
+            return (this.x * rhs.x) + (this.y * rhs.y) + (this.z * rhs.z);
+        }
+
+        //returns the cross product of two Vector3s
+        public Vector3 Cross(Vector3 rhs)
+        {
+            return new Vector3((this.y * rhs.z) - (this.z * rhs.y), (this.x * rhs.z) - (this.z * rhs.x), (this.x * rhs.y) - (this.y * rhs.x));
+        }
+
         #region Operators
         //  addition
         public static Vector3 operator +(Vector3 lhs, Vector3 rhs)

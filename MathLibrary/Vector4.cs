@@ -56,7 +56,21 @@ namespace MathLibrary
             return new Vector4(rhs.x * x, rhs.y * y, rhs.z * z, rhs.w * w);
         }
 
-        //operations:
+        //returns the dot product of 2 Vector4s
+        public float Dot(Vector4 rhs)
+        {
+            return (this.x * rhs.x) + (this.y * rhs.y) + (this.z * rhs.z) + (this.w * rhs.w);
+        }
+
+        //returns the cross product of two Vector4s by finding the cross product of the 3rd Dimension subspaces of the Vector4s 
+        public Vector4 Cross(Vector4 rhs)
+        {
+            return new Vector4( (this.y * rhs.z) - (this.z * rhs.y), 
+                                (this.x * rhs.z) - (this.z * rhs.x), 
+                                (this.x * rhs.y) - (this.y * rhs.x), 0);
+        }
+
+        #region Operators
         //  addition
         public static Vector4 operator +(Vector4 lhs, Vector4 rhs)
         {
@@ -90,6 +104,19 @@ namespace MathLibrary
 
             return result;
         }
+        public static Vector4 operator *(Vector4 lhs, float rhs)
+        {
+            return new Vector4(lhs.x * rhs, lhs.y * rhs, lhs.z * rhs, lhs.w * rhs);
+        }
+        public static Vector4 operator *(float lhs, Vector4 rhs)
+        {
+            return new Vector4(lhs * rhs.x, lhs * rhs.y, lhs * rhs.z, lhs * rhs.w);
+        }
+        public static Vector4 operator /(Vector4 lhs, float rhs)
+        {
+            return new Vector4(lhs.x / rhs, lhs.y / rhs, lhs.z / rhs, lhs.w/rhs);
+        }
+
         //equality comparisons
         //  ==
         public static bool operator ==(Vector4 lhs, Vector4 rhs)
@@ -114,6 +141,8 @@ namespace MathLibrary
         {
             return !(lhs == rhs);
         }
+
+        #endregion
 
         //ToString() override
         public override string ToString()

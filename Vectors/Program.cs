@@ -10,7 +10,8 @@ public class Program
         //initialize
         const int screenWidth = 800;
         const int screenHeight = 450;
-        Player player = new Player();
+        Player player = new Player(10f,screenWidth, screenHeight);
+        Ball ball = new Ball(new Vector3(1,1,0), 10f, 100f, screenWidth, screenHeight);
 
         Raylib.InitWindow(screenWidth, screenHeight,"My MathLibrary in Raylib");
         Raylib.SetTargetFPS(60);
@@ -21,13 +22,16 @@ public class Program
         {
             //update
             player.Update();
+            ball.Update();
 
             //draw
             //drawing objects to the screen
             Raylib.BeginDrawing();
             Raylib.ClearBackground(Color.RAYWHITE);
-            Raylib.EndDrawing();
             player.Draw();
+            ball.Draw();
+            Raylib.EndDrawing();
+
         }
 
         //deinitialize

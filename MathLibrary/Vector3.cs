@@ -28,24 +28,22 @@ namespace MathLibrary
 
         public void Normalize()
         {
-            x = x / Magnitude;
-            y = y / Magnitude;
-            z = z / Magnitude;
+            this /= Magnitude;
         }
 
         public Vector3 Normalized
         {
             get
             {   
-                return new Vector3(x/Magnitude, y/Magnitude, z/Magnitude);
+                return this / Magnitude;
             }
         }
 
         public void Scale(Vector3 rhs)
         {
-            x = rhs.x * x;
-            y = rhs.y * y;
-            z = rhs.z * z;
+            this.x *= rhs.x;
+            this.y *= rhs.y;
+            this.z *= rhs.z;
         }
 
         public Vector3 Scaled(Vector3 rhs)
@@ -53,7 +51,7 @@ namespace MathLibrary
             return new Vector3(rhs.x * x, rhs.y * y, rhs.z * z);
         }
 
-        //operations:
+        #region Operators
         //  addition
         public static Vector3 operator +(Vector3 lhs, Vector3 rhs)
         {
@@ -121,10 +119,12 @@ namespace MathLibrary
             return !(lhs == rhs);
         }
 
+        #endregion
+
         //override the default ToString implementation
         public override string ToString()
         {
-            return "{ " + x + "(x)\n{ " + y + "(y)\n " + z + "(z) }";
+            return "{ " + x + "(x) " + y + "(y) " + z + "(z) }";
         }
     }
 }

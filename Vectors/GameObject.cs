@@ -10,7 +10,9 @@ namespace Vectors
 {
     public class GameObject
     {
-        public Vector3 position;
+        protected Vector3 position;
+        protected int screenWidth;
+        protected int screenHeight;
 
         public virtual void Update() { }
         public virtual void Draw() { }

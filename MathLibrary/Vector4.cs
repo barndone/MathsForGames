@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MathLibrary
 {
-    internal struct Vector4
+    public struct Vector4
     {
         public float x, y, z, w;
 
@@ -118,7 +118,7 @@ namespace MathLibrary
         //ToString() override
         public override string ToString()
         {
-            return "{ " + x + "(x)\n{ " + y + "(y)\n " + z + "(z)\n" + w + " }";
+            return "{ " + x + "(x) " + y + "(y) " + z + "(z) " + w + "(w) }";
         }
     }
 }

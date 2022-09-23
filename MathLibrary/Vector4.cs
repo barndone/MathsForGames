@@ -19,6 +19,43 @@ namespace MathLibrary
             this.w = w;
         }
 
+        public float Magnitude
+        {
+            get
+            {
+                return MathF.Sqrt((x * x) + (y * y) + (z * z) + (w * w));
+            }
+        }
+
+        public void Normalize()
+        {
+            x = x / Magnitude;
+            y = y / Magnitude;
+            z = z / Magnitude;
+            w = w / Magnitude;
+        }
+
+        public Vector4 Normalized
+        {
+            get
+            {
+                return new Vector4(x / Magnitude, y / Magnitude, z / Magnitude, w/Magnitude);
+            }
+        }
+
+        public void Scale(Vector4 rhs)
+        {
+            x = rhs.x * x;
+            y = rhs.y * y;
+            z = rhs.z * z;
+            w = rhs.w * w;
+        }
+
+        public Vector4 Scaled(Vector4 rhs)
+        {
+            return new Vector4(rhs.x * x, rhs.y * y, rhs.z * z, rhs.w * w);
+        }
+
         //operations:
         //  addition
         public static Vector4 operator +(Vector4 lhs, Vector4 rhs)

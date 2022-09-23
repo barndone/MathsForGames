@@ -39,7 +39,7 @@ namespace Vectors
                                                     new System.Numerics.Vector2(Program.gameObjects[1].Position.x, Program.gameObjects[1].Position.y),
                                                     Program.gameObjects[1].Radius * 2.5f))
                 {
-                    if (normalVector.Dot(Program.gameObjects[1].Normal) >= 0.707)
+                    if (normalVector.Dot(Program.gameObjects[1].Normal) >= 0.707f)
                     {
                         Raylib.DrawCircle(0, 0, 50f, Color.BLACK);
                     }

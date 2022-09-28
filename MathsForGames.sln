@@ -5,11 +5,13 @@ VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MathsFormulas", "MathsFormulas\MathsFormulas.csproj", "{DE52EC8C-64A5-4656-8F51-695C571E3304}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trig", "Trig\Trig.csproj", "{07B61F0B-8128-4DDB-9E23-CBB52EAAA26F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trig", "Trig\Trig.csproj", "{07B61F0B-8128-4DDB-9E23-CBB52EAAA26F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathLibrary", "MathLibrary\MathLibrary.csproj", "{BFD5C746-6820-402D-A468-F7882DFC4A40}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MathLibrary", "MathLibrary\MathLibrary.csproj", "{BFD5C746-6820-402D-A468-F7882DFC4A40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vectors", "Vectors\Vectors.csproj", "{B9D8151C-7306-403F-95BD-B16FA2ABAAF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vectors", "Vectors\Vectors.csproj", "{B9D8151C-7306-403F-95BD-B16FA2ABAAF3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathLibraryTests", "MathLibraryTests\MathLibraryTests.csproj", "{47082960-F8A6-4E06-A48F-87220F00DF37}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{B9D8151C-7306-403F-95BD-B16FA2ABAAF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9D8151C-7306-403F-95BD-B16FA2ABAAF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9D8151C-7306-403F-95BD-B16FA2ABAAF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47082960-F8A6-4E06-A48F-87220F00DF37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47082960-F8A6-4E06-A48F-87220F00DF37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47082960-F8A6-4E06-A48F-87220F00DF37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47082960-F8A6-4E06-A48F-87220F00DF37}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

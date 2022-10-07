@@ -79,6 +79,7 @@ namespace MathLibrary
             }
         }
 
+        #region Operators
         public static Matrix4 operator *(Matrix4 lhs, Matrix4 rhs)
         {
             return new Matrix4(
@@ -102,6 +103,12 @@ namespace MathLibrary
                 (lhs.m2 * rhs.m13) + (lhs.m6 * rhs.m14) + (lhs.m10 * rhs.m15) + (lhs.m14 * rhs.m16),
                 (lhs.m3 * rhs.m13) + (lhs.m7 * rhs.m14) + (lhs.m11 * rhs.m15) + (lhs.m15 * rhs.m16),
                 (lhs.m4 * rhs.m13) + (lhs.m8 * rhs.m14) + (lhs.m12 * rhs.m15) + (lhs.m16 * rhs.m16));
+        }
+
+        public static Matrix4 operator *(Matrix4 lhs, Vector3 rhs)
+        {
+            //TODO IMPLEMENT ME PLEASE & THANK YOU
+            return;
         }
 
         public static Matrix4 operator *(Matrix4 lhs, float scalar)
@@ -216,5 +223,125 @@ namespace MathLibrary
                   + " " + m3.ToString() + " " + m7.ToString() + " " + m11.ToString() + " " + m15.ToString() + " \n"
                   + " " + m4.ToString() + " " + m8.ToString() + " " + m12.ToString() + " " + m16.ToString();
         }
+        #endregion
+
+        #region Transform Factory
+        //Translation Matrix for 2d
+        // (set z and w to 1)
+        public static Matrix4 CreateTranslation(float x, float y)
+        {
+            return new Matrix4(
+                //first column - x
+                1f, 0f, 0f, 0f,
+                //second column - y
+                0f, 1f, 0f, 0f,
+                //third column - z
+                0f, 0f, 1f, 0f,
+                //fourth column - w
+                x, y, 0f, 1f
+                );
+        }
+
+        //translation matrix for 3d using vector4 as input
+        public static Matrix4 CreateTranslation(Vector3 vec)
+        {
+            return new Matrix4(
+                //first column - x
+                1f, 0f, 0f, 0f,
+                //second column - y
+                0f, 1f, 0f, 0f,
+                //third column - z
+                0f, 0f, 1f, 0f,
+                //fourth column - w
+                vec.x, vec.y, vec.z, 1f
+                );
+        }
+
+        public static Matrix4 CreateRotateX(float a)
+        {
+            return new Matrix4(
+                //first column - x
+                1f, 0f, 0f, 0f,
+                //second column - y
+                0f, MathF.Cos(a), -MathF.Sin(a), 0f,
+                //third column - z
+                0f, MathF.Sin(a), MathF.Cos(a), 0f,
+                //fourth column - w
+                0f, 0f, 0f, 1f);
+        }
+
+        public static Matrix4 CreateRotateY(float a)
+        {
+            return new Matrix4(
+                //first column - x
+                MathF.Cos(a), 0f, MathF.Sin(a), 0f,
+                //second column - y
+                0f, 1f, 0f, 0f,
+                //third column - z
+                -MathF.Sin(a), 0f, MathF.Cos(a), 0f,
+                //fourth column - w
+                0f, 0f, 0f, 1f);
+        }
+
+        public static Matrix4 CreateRotateZ(float a)
+        {
+            return new Matrix4(
+                //first column - x
+                MathF.Cos(a), -MathF.Sin(a), 0f, 0f,
+                //second column - y
+                MathF.Sin(a), MathF.Cos(a), 0f, 0f,
+                //third column - z
+                0f, 0f, 1f, 0f,
+                //fourth column - w
+                0f, 0f, 0f, 1f);
+        }
+
+        public static Matrix4 Euler(float pitch, float yaw, float roll)
+        {
+            return CreateRotateX(pitch) * CreateRotateY(yaw) * CreateRotateZ(roll);
+        }
+
+        public static Matrix4 CreateScale(float xScale, float yScale)
+        {
+            return new Matrix4(
+                //first column - x
+                1f, 0f, 0f, 0f,
+                //second column - y
+                0f, 1f, 0f, 0f,
+                //third column - z
+                0f, 0f, 1f, 0f,
+                //fourth column - w
+                0f, 0f, 0f, 1f
+                );
+        }
+
+        public static Matrix4 CreateScale(float xScale, float yScale, float zScale)
+        {
+            return new Matrix4(
+                //first column - x
+                1f, 0f, 0f, 0f,
+                //second column - y
+                0f, 1f, 0f, 0f,
+                //third column - z
+                0f, 0f, 1f, 0f,
+                //fourth column - w
+                0f, 0f, 0f, 1f
+                );
+        }
+
+        public static Matrix4 CreateScale(Vector3 scale)
+        {
+            return new Matrix4(
+                //first column - x
+                1f, 0f, 0f, 0f,
+                //second column - y
+                0f, 1f, 0f, 0f,
+                //third column - z
+                0f, 0f, 1f, 0f,
+                //fourth column - w
+                0f, 0f, 0f, 1f
+                );
+        }
+        #endregion
     }
 }

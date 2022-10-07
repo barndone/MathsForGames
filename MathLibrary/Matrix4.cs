@@ -105,10 +105,18 @@ namespace MathLibrary
                 (lhs.m4 * rhs.m13) + (lhs.m8 * rhs.m14) + (lhs.m12 * rhs.m15) + (lhs.m16 * rhs.m16));
         }
 
-        public static Matrix4 operator *(Matrix4 lhs, Vector3 rhs)
+        public static Vector4 operator *(Matrix4 lhs, Vector4 rhs)
         {
             //TODO IMPLEMENT ME PLEASE & THANK YOU
-            return;
+            return new Vector4(
+                //first column
+                (lhs.m1 * rhs.x) + (lhs.m5 * rhs.y) + (lhs.m9 * rhs.z) + (lhs.m13 * rhs.w),
+                //second column
+                (lhs.m2 * rhs.x) + (lhs.m6 * rhs.y) + (lhs.m10 * rhs.z) + (lhs.m14 * rhs.w),
+                //third column
+                (lhs.m3 * rhs.x) + (lhs.m7 * rhs.y) + (lhs.m11 * rhs.z) + (lhs.m15 * rhs.w),
+                //fourth column
+                (lhs.m4 * rhs.x) + (lhs.m8 * rhs.y) + (lhs.m12 * rhs.z) + (lhs.m16 * rhs.w));
         }
 
         public static Matrix4 operator *(Matrix4 lhs, float scalar)
@@ -305,9 +313,9 @@ namespace MathLibrary
         {
             return new Matrix4(
                 //first column - x
-                1f, 0f, 0f, 0f,
+                xScale, 0f, 0f, 0f,
                 //second column - y
-                0f, 1f, 0f, 0f,
+                0f, yScale, 0f, 0f,
                 //third column - z
                 0f, 0f, 1f, 0f,
                 //fourth column - w
@@ -319,11 +327,11 @@ namespace MathLibrary
         {
             return new Matrix4(
                 //first column - x
-                1f, 0f, 0f, 0f,
+                xScale, 0f, 0f, 0f,
                 //second column - y
-                0f, 1f, 0f, 0f,
+                0f, yScale, 0f, 0f,
                 //third column - z
-                0f, 0f, 1f, 0f,
+                0f, 0f, zScale, 0f,
                 //fourth column - w
                 0f, 0f, 0f, 1f
                 );
@@ -333,14 +341,127 @@ namespace MathLibrary
         {
             return new Matrix4(
                 //first column - x
-                1f, 0f, 0f, 0f,
+                scale.x, 0f, 0f, 0f,
                 //second column - y
-                0f, 1f, 0f, 0f,
+                0f, scale.y, 0f, 0f,
                 //third column - z
-                0f, 0f, 1f, 0f,
+                0f, 0f, scale.z, 0f,
                 //fourth column - w
                 0f, 0f, 0f, 1f
                 );
+        }
+
+        public static Matrix4 CreateScale(Vector4 scale)
+        {
+            return new Matrix4(
+                //first column - x
+                scale.x, 0f, 0f, 0f,
+                //second column - y
+                0f, scale.y, 0f, 0f,
+                //third column - z
+                0f, 0f, scale.z, 0f,
+                //fourth column - w
+                0f, 0f, 0f, scale.w
+                );
+        }
+        #endregion
+
+        #region Transform Methods
+        // only set the translation component of the matrix
+        public void SetTranslation(float x, float y)
+        {
+            m13 = x;
+            m14 = y;
+        }
+
+        // only set the translation component of the matrix
+        public void SetTranslation(Vector3 v)
+        {
+            m13 = v.x;
+            m14 = v.y;
+            m15 = v.z;
+        }
+
+        // only set the translation component of the matrix
+        public void SetTranslation(Vector4 v)
+        {
+            m13 = v.x;
+            m14 = v.y;
+            m15 = v.z;
+            m16 = v.w;
+        }
+
+        // add x and y onto the translation component of the matrix
+        public void Translate(float x, float y)
+        {
+            m13 += x;
+            m14 += y;
+        }
+
+        // returns the translation component of the matrix
+        public Vector3 GetTranslation()
+        {
+            return new Vector3(m13, m14, m15);
+        }
+
+        // rotates the existing matrix by a certain amount on the X-axis
+        public void RotateX(float radians)
+        {
+            //x column does not change
+
+            //y column does
+            m5 = 0f;
+            m6 = MathF.Cos(radians);
+            m7 = -MathF.Sin(radians);
+
+            //z column does
+            m9 = 0f;
+            m10 = MathF.Sin(radians);
+            m11 = MathF.Cos(radians);
+        }
+
+        // rotates the existing matrix by a certain amount on the Y-axis
+        public void RotateY(float radians)
+        {
+            //x column does
+            m1 = MathF.Cos(radians);
+            m2 = 0f;
+            m3 = MathF.Sin(radians);
+
+            //y column does not change​
+
+            //z column does
+            m9 = -MathF.Sin(radians);
+            m10 = 0f;
+            m11 = MathF.Cos(radians);
+        }
+
+        // rotates the existing matrix by a certain amount on the Z-axis
+        public void RotateZ(float radians)
+        {
+            //x column does
+            m1 = MathF.Cos(radians);
+            m2 = -MathF.Sin(radians);
+            m3 = 0f;
+
+            //y column does
+            m5 = MathF.Sin(radians);
+            m6 = MathF.Cos(radians);
+            m7 = 0f;
+        }
+        // scales the existing matrix by a certain amount on each axis
+        public void Scale(float x, float y, float z)
+        {
+            m1 *= x;
+            m6 *= y;
+            m11 *= z;
+        }
+        // scales the existing matrix by a certain amount on each axis
+        public void Scale(Vector3 v)
+        {
+            m1 *= v.x;
+            m6 *= v.y;
+            m11 *= v.z;
         }
         #endregion
     }

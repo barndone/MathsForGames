@@ -11,7 +11,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MathLibrary", "MathLibrary\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vectors", "Vectors\Vectors.csproj", "{B9D8151C-7306-403F-95BD-B16FA2ABAAF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathLibraryTests", "MathLibraryTests\MathLibraryTests.csproj", "{47082960-F8A6-4E06-A48F-87220F00DF37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MathLibraryTests", "MathLibraryTests\MathLibraryTests.csproj", "{47082960-F8A6-4E06-A48F-87220F00DF37}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Matrix", "Matrix\Matrix.csproj", "{9FBB5AD6-03AB-4BF3-825D-01AE11B71113}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BFD5C746-6820-402D-A468-F7882DFC4A40} = {BFD5C746-6820-402D-A468-F7882DFC4A40}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +44,10 @@ Global
 		{47082960-F8A6-4E06-A48F-87220F00DF37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47082960-F8A6-4E06-A48F-87220F00DF37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47082960-F8A6-4E06-A48F-87220F00DF37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FBB5AD6-03AB-4BF3-825D-01AE11B71113}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FBB5AD6-03AB-4BF3-825D-01AE11B71113}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FBB5AD6-03AB-4BF3-825D-01AE11B71113}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FBB5AD6-03AB-4BF3-825D-01AE11B71113}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -17,7 +17,7 @@ namespace Matrix
         protected override void OnDraw()
         {
             // calculate the local transform matrix
-            Matrix3 myTransform = LocalTransform;
+            Matrix3 myTransform = GlobalTransform;
 
             // extract the position
             Vector3 pos = myTransform.GetTranslation();

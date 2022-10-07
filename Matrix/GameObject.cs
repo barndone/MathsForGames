@@ -70,8 +70,6 @@ namespace GameFramework
         {
             get
             {
-
-
                 //  if not, just return your local matrix
                 if (parent == null)
                 {
@@ -81,7 +79,7 @@ namespace GameFramework
                 {
                     //  Otherwise, we have a parent! Yay! Joyous day!
                     //  Combine your parent matrix w/ your local matrix (parent * child)
-                    return parent.LocalTransform * this.LocalTransform;
+                    return parent.LocalTransform * LocalTransform;
                 }
             }
         }

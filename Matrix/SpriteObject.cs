@@ -14,16 +14,35 @@ namespace Matrix
     {
         public Texture2D sprite;
 
+        public Vector3 origin = new Vector3(0.5f, 0.5f, 0.5f);
+
         protected override void OnDraw()
         {
             // calculate the local transform matrix
             Matrix3 myTransform = GlobalTransform;
+            //extracts the x axis vector and y axis vector, then stores the magnitude of each as the x and y component
+            //of a scale vector2
+            Vector2 scale = new Vector2(new Vector2(GlobalTransform.m1, GlobalTransform.m2).Magnitude,
+                new Vector2(GlobalTransform.m4, GlobalTransform.m5).Magnitude);
 
             // extract the position
             Vector3 pos = myTransform.GetTranslation();
 
-            // draw the monster sprite
-            Raylib.DrawTexture(sprite, (int)pos.x, (int)pos.y, Color.WHITE);
+            // draw the sprite
+            Raylib.DrawTexturePro(
+                //  texture to draw 
+                sprite, 
+                //  source rect: 0,0, width, height of portion you want drawn
+                new Rectangle(0,0, (float)sprite.width, (float)sprite.height),
+                //destination: portion of the screen: start point x, y, width, height (SCALING * width/height)
+                new Rectangle(pos.x, pos.y, (sprite.width * scale.x * origin.x), (sprite.height * scale.y * origin.y)),
+                //origin: pivot point: default top left corner, for middle origin: half of destination width/height
+                new System.Numerics.Vector2(origin.x, origin.y),
+                //rotation              `
+                MathUtils.AngleFrom2D(GlobalTransform.m1, GlobalTransform.m2),
+                //tint                  `
+                Color.WHITE
+                );
         }
     }
 }

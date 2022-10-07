@@ -8,9 +8,14 @@ namespace MathLibrary
 {
     public class MathUtils
     {
-        public static float DegreeToRadians(float degrees)
+        public const float DegreeToRadians = MathF.PI * 2.0f / 360.0f;
+        
+
+        public const float RadiansToDegrees = 1.0f / DegreeToRadians 
+
+        public static float AngleFrom2D(float x, float y)
         {
-            return (MathF.PI / 180.0f) * degrees;
+            return MathF.Atan2(y, x);
         }
     }
 }

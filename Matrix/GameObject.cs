@@ -42,8 +42,13 @@ namespace GameFramework
                     this.parent.children.Remove(this);
                 }
                 //then add us to the new parent
+                //  Check if this object already has a parent:
+                if (value != null)
+                {
+                    value.children.Add(this);
+                }
                 parent = value;
-                parent.children.Add(this);
+                
             }
         }
 

@@ -31,15 +31,15 @@ namespace Matrix
             // draw the sprite
             Raylib.DrawTexturePro(
                 //  texture to draw 
-                sprite, 
+                sprite,
                 //  source rect: 0,0, width, height of portion you want drawn
-                new Rectangle(0,0, (float)sprite.width, (float)sprite.height),
+                new Rectangle(0, 0, (float)sprite.width, (float)sprite.height),
                 //destination: portion of the screen: start point x, y, width, height (SCALING * width/height)
-                new Rectangle(pos.x, pos.y, (sprite.width * scale.x * origin.x), (sprite.height * scale.y * origin.y)),
+                new Rectangle(pos.x, pos.y, sprite.width * scale.x, sprite.height * scale.y),
                 //origin: pivot point: default top left corner, for middle origin: half of destination width/height
-                new System.Numerics.Vector2(origin.x, origin.y),
+                new System.Numerics.Vector2(origin.x * sprite.width * scale.x, origin.y * sprite.height * scale.y),
                 //rotation              `
-                MathUtils.AngleFrom2D(GlobalTransform.m1, GlobalTransform.m2),
+                MathUtils.AngleFrom2D(GlobalTransform.m1, GlobalTransform.m2) * MathUtils.RadiansToDegrees,
                 //tint                  `
                 Color.WHITE
                 );

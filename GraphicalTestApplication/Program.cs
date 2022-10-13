@@ -1,8 +1,6 @@
 ﻿using Raylib_cs;
-
 using GameFramework;
-
-using Matrix;
+using Tanks;
 
 public class Program
 {
@@ -26,14 +24,14 @@ public class Program
         const int screenW = 800;
         const int screenH = 450;
 
-        Raylib.InitWindow(screenW, screenH, "Raylib");
+        Raylib.InitWindow(screenW, screenH, "Tank Go Brr");
         Raylib.SetTargetFPS(60);
 
         // INITIALIZE GAMEPLAY
-        gameObjects.Add(GameObjectFactory.MakeMonster());
-        gameObjects.Add(GameObjectFactory.MakeHoverCircle(new MathLibrary.Vector3(128, 128, 0), 50));
 
         bool isPaused = false;
+
+        gameObjects.Add(GameObjectFactory.MakeSprite("res/tankGreen.png"));
 
         // Game Loop - PLAY THE GAME
         while (!Raylib.WindowShouldClose())
@@ -88,4 +86,5 @@ public class Program
 
         return 0;
     }
+
 }

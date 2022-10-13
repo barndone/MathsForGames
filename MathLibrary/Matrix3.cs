@@ -13,6 +13,7 @@ namespace MathLibrary
                             m4, m5, m6,  //second column
                             m7, m8, m9;  //third column (translation vector)
 
+        //constructor with each value specified
         public Matrix3(float m1, float m2, float m3,
                 float m4, float m5, float m6,
                 float m7, float m8, float m9)
@@ -32,6 +33,23 @@ namespace MathLibrary
             this.m8 = m8;
             this.m9 = m9;
         }
+
+        //initialize a 3x3 matrix with the assigned value on the diagonal
+        public Matrix3(float val)
+        {
+            this.m1 = val;
+            this.m2 = 0;
+            this.m3 = 0;
+
+            this.m4 = 0;
+            this.m5 = val;
+            this.m6 = 0;
+
+            this.m7 = 0;
+            this.m8 = 0;
+            this.m9 = val;
+        }
+
         public float this[int index]
         {
             get
@@ -280,13 +298,13 @@ namespace MathLibrary
             //x column does not change
             
             //y column does
-            m4 = 0f;
+            
             m5 = MathF.Cos(radians);
-            m6 = -MathF.Sin(radians);
+            m6 = MathF.Sin(radians);
             
             //z column does
-            m7 = 0f;
-            m8 = MathF.Sin(radians);
+            
+            m8 = -MathF.Sin(radians);
             m9 = MathF.Cos(radians);
         }
         
@@ -295,14 +313,14 @@ namespace MathLibrary
         {
             //x column does
             m1 = MathF.Cos(radians);
-            m2 = 0f;
-            m3 = MathF.Sin(radians);
+            
+            m3 = -MathF.Sin(radians);
             
             //y column does not change​
             
             //z column does
-            m7 = -MathF.Sin(radians);
-            m8 = 0f;
+            m7 = MathF.Sin(radians);
+            
             m9 = MathF.Cos(radians);
         }
 
@@ -311,13 +329,13 @@ namespace MathLibrary
         {
             //x column does
             m1 = MathF.Cos(radians);
-            m2 = -MathF.Sin(radians);
-            m3 = 0f;
+            m2 = MathF.Sin(radians);
+            
 
             //y column does
-            m4 = MathF.Sin(radians);
+            m4 = -MathF.Sin(radians);
             m5 = MathF.Cos(radians);
-            m6 = 0f;
+            
         }
         // scales the existing matrix by a certain amount on each axis
         public void Scale(float x, float y, float z)

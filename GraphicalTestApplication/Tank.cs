@@ -5,14 +5,33 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Raylib_cs;
+using MathLibrary;
+using GameFramework;
 
 namespace Tanks
 {
-    public class TankBody : SpriteObject
+    public class Tank : SpriteObject
     {
-
+        //initialize a turret for the tank
+        private void AddTurret()
+        {
+            //create a turret object using the gameobjectfactory
+            TankTurret turret = (TankTurret)GameObjectFactory.MakeTurret("res/barrelGreen.png");
+            //re-assign the origin of the turret to the base of the turret (as it would in reality)
+            turret.origin = new Vector3(0, 0.5f, 0.5f);
+            //add the turret to the children of the tank
+            Program.AddRootGameObject(turret);
+            turret.Parent = this;
+            children.Add(turret);
+            turret.LocalPosition = LocalPosition;
+        }
         protected override void OnUpdate(float deltaTime)
         {
+            if (ChildCount == 0)
+            {
+                AddTurret();
+            }
+
             //
             //  Parameters
             //
@@ -29,7 +48,6 @@ namespace Tanks
             {
                 rotationAngle += ROTATESPEED * deltaTime;
             }
-
             if (Raylib.IsKeyDown(KeyboardKey.KEY_D))
             {
                 rotationAngle -= ROTATESPEED * deltaTime;
@@ -39,17 +57,18 @@ namespace Tanks
             if (Raylib.IsKeyDown(KeyboardKey.KEY_W))
             {
                 moveX += MathF.Cos(LocalRotation) * MOVESPEED * deltaTime;
-                moveY += MathF.Sin(LocalRotation) * MOVESPEED * deltaTime;
+                moveY -= MathF.Sin(LocalRotation) * MOVESPEED * deltaTime;
             }
             if (Raylib.IsKeyDown(KeyboardKey.KEY_S))
             {
                 moveX -= MathF.Cos(LocalRotation) * MOVESPEED * deltaTime;
-                moveY -= MathF.Sin(LocalRotation) * MOVESPEED * deltaTime;
+                moveY += MathF.Sin(LocalRotation) * MOVESPEED * deltaTime;
             }
 
             //Apply movements
-            Rotate(rotationAngle);
+
             Translate(moveX, moveY);
+            Rotate(rotationAngle);
         }
     }
 }

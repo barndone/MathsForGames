@@ -31,7 +31,7 @@ public class Program
 
         bool isPaused = false;
 
-        gameObjects.Add(GameObjectFactory.MakeSprite("res/tankGreen.png"));
+        gameObjects.Add(GameObjectFactory.MakeTank("res/tankGreen.png"));
 
         // Game Loop - PLAY THE GAME
         while (!Raylib.WindowShouldClose())

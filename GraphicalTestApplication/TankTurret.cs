@@ -15,19 +15,26 @@ namespace Tanks
     {
         private void FireShell()
         {
+            //Initialize the shell
             TankShell newShell = (TankShell)GameObjectFactory.FireShell("res/shell.png");
-            // newShell.LocalPosition =    new Vector3(this.LocalPosition.x + ((this.sprite.width) * MathF.Acos(this.LocalRotation)),
-            //                                       this.LocalPosition.y + ((this.sprite.width) * MathF.Asin(this.LocalRotation)), 
-            //                                     this.LocalPosition.z);
+            
+            //set the local position relative to the global transform of the Turret
             newShell.LocalPosition = GlobalTransform.GetTranslation();
+
+            //translate the shell to the end of the barrel
+            //  Isolate Global Rotation (m1, m2) - acts as a +/- sign and multiply by the sprite (barrel) width
             newShell.Translate(GlobalTransform.m1 * this.sprite.width, GlobalTransform.m2 * this.sprite.width);
+            
+            //rotate the shell by the NEGATIVE of the current global translation (since positive Y is downward)
             newShell.LocalRotation = -MathUtils.AngleFrom2D(GlobalTransform.m1, GlobalTransform.m2);
             Program.AddRootGameObject(newShell);
         }
         protected override void OnUpdate(float deltaTime)
         {
 
+            //holds the input rotation angle
             float rotationAngle = 0.0f;
+            //constant for rotation speed
             const float ROTATESPEED = 1f;
 
             //Rotate the turret!
@@ -42,13 +49,11 @@ namespace Tanks
                 rotationAngle -= ROTATESPEED * deltaTime;
             }
 
+
+            //apply the rotation to the turret
             Rotate(rotationAngle);
 
-            //logic for shooting shells:
-            //fire from the origin in the direction vector of the turret
-            //not a child of the tank
-            //method to create a shell?
-
+            //initialize a projectile on specified key-press
             if (Raylib.IsKeyPressed(KeyboardKey.KEY_SPACE))
             {
                 FireShell();

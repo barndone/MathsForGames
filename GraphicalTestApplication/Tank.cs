@@ -20,9 +20,9 @@ namespace Tanks
             //re-assign the origin of the turret to the base of the turret (as it would in reality)
             turret.origin = new Vector3(0, 0.5f, 0.5f);
             //add the turret to the children of the tank
-            Program.AddRootGameObject(turret);
+
+            //Do NOT need to add to root game objects, do NOT need to add to list of children (it does that in setting the parent)
             turret.Parent = this;
-            children.Add(turret);
             turret.LocalPosition = LocalPosition;
         }
         protected override void OnUpdate(float deltaTime)

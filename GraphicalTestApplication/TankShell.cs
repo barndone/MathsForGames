@@ -12,7 +12,7 @@ namespace Tanks
 {
     public class TankShell : SpriteObject
     {
-        public const float SHELLVELOCITY = 3f;
+        public const float SHELLVELOCITY = 2f;
         protected override void OnUpdate(float deltaTime)
         {
             //apply constant translation of the shell in the direction it is facing

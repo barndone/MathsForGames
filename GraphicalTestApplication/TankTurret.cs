@@ -19,11 +19,9 @@ namespace Tanks
             // newShell.LocalPosition =    new Vector3(this.LocalPosition.x + ((this.sprite.width) * MathF.Acos(this.LocalRotation)),
             //                                       this.LocalPosition.y + ((this.sprite.width) * MathF.Asin(this.LocalRotation)), 
             //                                     this.LocalPosition.z);
-            newShell.LocalPosition = LocalPosition;
-            newShell.Translate( this.GlobalTransform.m7 + ((this.sprite.width) * MathF.Acos(this.LocalRotation)), 
-                                this.GlobalTransform.m8 + ((this.sprite.width) * MathF.Asin(this.LocalRotation)));
-            
-            newShell.LocalRotation = MathUtils.AngleFrom2D(this.LocalTransform.m1, this.LocalTransform.m2);
+            newShell.LocalPosition = GlobalTransform.GetTranslation();
+            newShell.Translate(GlobalTransform.m1 * this.sprite.width, GlobalTransform.m2 * this.sprite.width);
+            newShell.LocalRotation = -MathUtils.AngleFrom2D(GlobalTransform.m1, GlobalTransform.m2);
             Program.AddRootGameObject(newShell);
         }
         protected override void OnUpdate(float deltaTime)

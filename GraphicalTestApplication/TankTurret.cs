@@ -27,7 +27,7 @@ namespace Tanks
             
             //rotate the shell by the NEGATIVE of the current global translation (since positive Y is downward)
             newShell.LocalRotation = -MathUtils.AngleFrom2D(GlobalTransform.m1, GlobalTransform.m2);
-            Program.AddRootGameObject(newShell);
+            Program.AddProjectile(newShell);
         }
         protected override void OnUpdate(float deltaTime)
         {

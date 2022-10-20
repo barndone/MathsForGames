@@ -50,5 +50,18 @@ namespace Tanks
 
             return newShell;
         }
+
+        public static GameObject MakeTarget(string pathToSprite)
+        {
+            Target newTarget = new Target();
+            if (!File.Exists(pathToSprite))
+            {
+                throw new FileNotFoundException("File not found at path: " + pathToSprite);
+            }
+
+            newTarget.sprite = Raylib.LoadTexture(pathToSprite);
+
+            return newTarget;
+        }
     }
 }

@@ -19,5 +19,7 @@ namespace Tanks
             //Translate by the constant shell velocity MULTIPLIED by the LOCAL rotation of the shell (ensures rotation is accurate)
             Translate(SHELLVELOCITY * LocalTransform.m1, SHELLVELOCITY * LocalTransform.m2);
         }
+
+
     }
 }

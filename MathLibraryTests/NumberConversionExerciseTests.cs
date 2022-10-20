@@ -7,6 +7,7 @@ namespace UnitTestProject
     [TestClass]
     public class NumberConversionExerciseTests
     {
+
         [TestMethod]
         public void QuestionThree()
         {
@@ -22,7 +23,8 @@ namespace UnitTestProject
             Colour c = new Colour();
             c.Red = 94;
 
-            Assert.AreEqual("10111100000000000000000000000000", Convert.ToString(c.colour, 2).PadRight(32, '0'));
+            Assert.AreEqual("10111100000000000000000000000000", 
+                Convert.ToString(c.colour, 2).PadRight(32, '0'));
         }
 
         [TestMethod]
@@ -42,15 +44,23 @@ namespace UnitTestProject
         {
             Colour c = new Colour();
             c.Red = 94;
-            c.colour = (c.colour & 0xff00ffff) | (UInt32)(c.colour >> 8);
+            c.colour = (c.colour & 0xffffffff) | ((UInt32)c.colour >> 8);
 
-            Assert.AreEqual("00000000101111000000000000000000", Convert.ToString(c.colour, 2).PadRight(32, '0'));
+            Assert.AreEqual("00000000101111000000000000000000", 
+                Convert.ToString(c.colour, 2).PadRight(32, '0'));
         }
 
 
+        [TestMethod]
         public void QuestionSeven()
         {
+            Colour c = new Colour();
+            c.Red = 94;
+            c.colour = (c.colour & 0xffffffff) | ((UInt32)c.colour >> 8);
 
+            string colour = Convert.ToString(c.colour, 2).PadRight(32, '0');
+
+            Assert.AreEqual((UInt32)12320768, Convert.ToUInt32(colour, 2));
         }
        
     }

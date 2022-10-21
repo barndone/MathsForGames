@@ -16,7 +16,7 @@ namespace MathLibrary
             //  shift b to the 0xff00ffff
             //  shift g to the 0xffff00ff
             //  just add a to the end @ 0xffffff00
-            colour = (UInt32)(r << 24) | (UInt32)(g << 16) | (UInt32)(b << 8) | (a);
+            colour = (UInt32)(r << 24) | (UInt32)(g << 16) | (UInt32)(b << 8) | (UInt32)(a);
         }
 
         public byte Red
@@ -74,6 +74,10 @@ namespace MathLibrary
                 //applies a bitmask to ONLY work in the corresponding byte
                 colour = (colour & 0xffffff00) | (UInt32)value; 
             }
+        }
+        public override string ToString()
+        {
+            return Convert.ToString((Red << 24 | Green << 16 | Blue << 8 | Alpha), 2);
         }
     }
 }

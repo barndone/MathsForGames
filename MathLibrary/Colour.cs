@@ -25,7 +25,7 @@ namespace MathLibrary
             {
                 //  RGBA
                 //      shifts the R component of colour all the way to the right (in this case 24 bits)
-                return (byte)((colour >> 24) & 0xff);
+                return (byte)(colour >> 24);
             }
             set 
             {
@@ -39,7 +39,7 @@ namespace MathLibrary
             {
                 //  RGBA
                 //      shifts the G component to the right  (in this case 16)
-                return (byte)(((colour >> 16) & 0xff));
+                return (byte)(colour >> 16);
             }
             set 
             {
@@ -53,7 +53,7 @@ namespace MathLibrary
             {
                 //  RGBA
                 //      shifts the B component to the right  (in this case 8)
-                return (byte)(((colour >> 8) & 0xff));
+                return (byte)(colour >> 8);
             }
             set 
             {
@@ -67,17 +67,17 @@ namespace MathLibrary
             { 
                 //RGBA
                 //      Alpha is already right most so just return 8 bits from the right
-                return (byte)(colour & 0xff);
+                return (byte)(colour);
             }
             set 
             { 
                 //applies a bitmask to ONLY work in the corresponding byte
-                colour = (colour & 0xffffff00) | (UInt32)value; 
+                colour = (colour & 0xffffff00) | value; 
             }
         }
         public override string ToString()
         {
-            return Convert.ToString((Red << 24 | Green << 16 | Blue << 8 | Alpha), 2);
+            return String.Format("R: {0}, G: {1}, B: {2}, A: {3}", Red, Green, Blue, Alpha);
         }
     }
 }
